@@ -1,6 +1,6 @@
 # TCBTrack
 
-This repository contains the details of the Pytorch implementation of the Baseline Method TCBTrack of the Paper:[Temporal Correlation Meets Embedding: Towards a 2nd Generation of JDE-based Real-Time Multi-Object Tracking](https://arxiv.org/abs/2407.14086).
+This repository contains the details of the Pytorch implementation of the Baseline Method TCBTrack of the Paper: [Temporal Correlation Meets Embedding: Towards a 2nd Generation of JDE-based Real-Time Multi-Object Tracking](https://arxiv.org/abs/2407.14086).
 ![](assets/model.png)
 
 ## Abstract
