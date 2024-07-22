@@ -1,76 +1,4 @@
-# ByteTrack_ReID
-
-**[update 20220514]**:
-
-Onedrive [link](https://1drv.ms/u/s!Ah_DaS8JQYSHlnPl4vhZvz10JTB4?e=jpehmF) of trained model. Trained model's mAP should be 0.556 with MOTA 72.6 using ByteTrack and MOTA 70.9 using FairMOT tracking strategy. 
-
-**[update 20220511]**:
-
-1. Please open issue with English, not Chinese, so the discussion can benifit the community.
-
-2. To switch from different trackers to another, please replace the byte_track.py with other files. 
-
-3. Training proceduer is the same as original ByteTrack. If you want to train the model on larger datasets with ids, please follow JDE/FairMOT.
-
-**[update 20220428]**:
-
-I found a ReID related bug of original ByteTrack. I made a PR to ByteTrack and it is merged to master branch of ByteTrack. https://github.com/ifzhang/ByteTrack/pull/184
-
-So the ReID part of current code will not be train correctly when track_id becomes larger. I will update the code when I got time.
-
-Or you can make a PR to help me out!
-
-**[update 20220414]**: 
-1. Fix loss computation bug in yolo_head.py. 
-2. Fix feature update in FairMOT tracker when recovering a tracklet. 
-3. Fix training set in yolox_s_mot_half using train_half.json instead of train.json. 
-4. Trained model can be download here [jc69](https://pan.baidu.com/s/1K_cowLmRYEYazA71v5Ultw). Trained model's mAP should be 0.556 with MOTA 72.6 using ByteTrack and MOTA 70.9 using FairMOT tracking strategy. 
-5. Note that reid embeddings only trained on MOT17 half is not reliable due to limited ID annotations.
-
-[ByteTrack](https://github.com/ifzhang/ByteTrack) is the SOTA tracker in MOT benchmarks with strong detector [YOLOX](https://github.com/Megvii-BaseDetection/YOLOX) and a simple association strategy only based on motion information. 
-
-Motion information (IoU distance) is efficient and effective in short-term tracking, but can not be used for recovering targets after long-time disappear or conditions with moving camera.
-
-So it is important to enhance ByteTrack with a ReID module for long-term tracking, improving the performance under other challenging conditions, such as moving camera.
-
-Some code is borrowed from [FairMOT](https://github.com/ifzhang/FairMOT)
-
-For now, the results are trained on half of MOT17 and tested on the other half of MOT17. And the performance is lower than the original performance. 
-
-Any issue and suggestions are welcome!
-
-<p align="center"><img src="assets/training_loss.png" /></p>
-
-<p align="center"><img src="assets/tracking_ByteTrack.png" /></p>
-
-<center>
-    tracking results using tracking strategy of ByteTrack, with detection head and ReID head trained together
-</center>
-
-<p align="center"><img src="assets/tracking_FairMOT.png" /></p>
-
-<center>
-    tracking results using tracking strategy of FairMOT, with detection head and ReID head trained together
-</center>
-
-## Modifications, TODOs and Performance
-
-### Modifications
-
-- Enhanced ByteTrack with a ReID module (head) following the paradigm of FairMOT.
-- Add a classifier for supervised training of ReID head.
-- Using uncertainty loss in FairMOT for the balance of detection and ReID tasks.
-- Tracking strategy is borrowed from FairMOT
-
-### TODOs
-
-- [ ] support more datasets
-- [ ] single class –> multiple class
-- [ ] other loss functions for better ReID performance
-- [ ] other strategies for multiple tasks balance
-- [ ] … …
-
-> The following contents is original README in ByteTrack.
+# ByteTrack
 
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/bytetrack-multi-object-tracking-by-1/multi-object-tracking-on-mot17)](https://paperswithcode.com/sota/multi-object-tracking-on-mot17?p=bytetrack-multi-object-tracking-by-1)
 
@@ -82,20 +10,24 @@ Any issue and suggestions are welcome!
 
 > [**ByteTrack: Multi-Object Tracking by Associating Every Detection Box**](https://arxiv.org/abs/2110.06864)
 > 
-> Yifu Zhang, Peize Sun, Yi Jiang, Dongdong Yu, Zehuan Yuan, Ping Luo, Wenyu Liu, Xinggang Wang
+> Yifu Zhang, Peize Sun, Yi Jiang, Dongdong Yu, Fucheng Weng, Zehuan Yuan, Ping Luo, Wenyu Liu, Xinggang Wang
 > 
 > *[arXiv 2110.06864](https://arxiv.org/abs/2110.06864)*
 
 ## Demo Links
-| Google Colab demo | Huggingface Demo | Original Paper: ByteTrack |
-|:-:|:-:|:-:|
-|[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1bDilg4cmXFa8HCKHbsZ_p16p0vrhLyu0?usp=sharing)|[![Hugging Face Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-blue)](https://huggingface.co/spaces/akhaliq/bytetrack)|[arXiv 2110.06864](https://arxiv.org/abs/2110.06864)|
+| Google Colab Demo | Huggingface Demo |                  YouTube Tutorial                   | Original Paper: ByteTrack |
+|:-----------------:|:----------------:|:---------------------------------------------------:|:-------------------------:|
+|[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1bDilg4cmXFa8HCKHbsZ_p16p0vrhLyu0?usp=sharing)|[![Hugging Face Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-blue)](https://huggingface.co/spaces/akhaliq/bytetrack)|[![YouTube](https://badges.aleen42.com/src/youtube.svg)](https://youtu.be/QCG8QMhga9k)|[arXiv 2110.06864](https://arxiv.org/abs/2110.06864) |
 * Integrated to [Huggingface Spaces](https://huggingface.co/spaces) with [Gradio](https://github.com/gradio-app/gradio).
 
 
 ## Abstract
 Multi-object tracking (MOT) aims at estimating bounding boxes and identities of objects in videos. Most methods obtain identities by associating detection boxes whose scores are higher than a threshold. The objects with low detection scores, e.g. occluded objects, are simply thrown away, which brings non-negligible true object missing and fragmented trajectories. To solve this problem, we present a simple, effective and generic association method, tracking by associating every detection box instead of only the high score ones. For the low score detection boxes, we utilize their similarities with tracklets to recover true objects and filter out the background detections. When applied to 9 different state-of-the-art trackers, our method achieves consistent improvement on IDF1 scores ranging from 1 to 10 points. To put forwards the state-of-the-art performance of MOT, we design a simple and strong tracker, named ByteTrack. For the first time, we achieve 80.3 MOTA, 77.3 IDF1 and 63.1 HOTA on the test set of MOT17 with 30 FPS running speed on a single V100 GPU.
 <p align="center"><img src="assets/teasing.png" width="400"/></p>
+
+## News
+* (2022.07) Our paper is accepted by ECCV 2022!
+* (2022.06) A [nice re-implementation](https://github.com/PaddlePaddle/PaddleDetection/tree/develop/configs/mot/bytetrack) by Baidu [PaddleDetection](https://github.com/PaddlePaddle/PaddleDetection)!
 
 ## Tracking performance
 ### Results on MOT challenge test set
@@ -352,25 +284,16 @@ python3 tools/demo_track.py video -f exps/example/mot/yolox_x_mix_det.py -c pret
 2.  [TensorRT in Python](./deploy/TensorRT/python)
 3.  [TensorRT in C++](./deploy/TensorRT/cpp)
 4.  [ncnn in C++](./deploy/ncnn/cpp)
+5.  [Deepstream](./deploy/DeepStream)
 
 ## Citation
 
 ```
-@article{zhang2021bytetrack,
+@article{zhang2022bytetrack,
   title={ByteTrack: Multi-Object Tracking by Associating Every Detection Box},
-  author={Zhang, Yifu and Sun, Peize and Jiang, Yi and Yu, Dongdong and Yuan, Zehuan and Luo, Ping and Liu, Wenyu and Wang, Xinggang},
-  journal={arXiv preprint arXiv:2110.06864},
-  year={2021}
-}
-
-@article{zhang2021fairmot,
-  title={Fairmot: On the fairness of detection and re-identification in multiple object tracking},
-  author={Zhang, Yifu and Wang, Chunyu and Wang, Xinggang and Zeng, Wenjun and Liu, Wenyu},
-  journal={International Journal of Computer Vision},
-  volume={129},
-  pages={3069--3087},
-  year={2021},
-  publisher={Springer}
+  author={Zhang, Yifu and Sun, Peize and Jiang, Yi and Yu, Dongdong and Weng, Fucheng and Yuan, Zehuan and Luo, Ping and Liu, Wenyu and Wang, Xinggang},
+  booktitle={Proceedings of the European Conference on Computer Vision (ECCV)},
+  year={2022}
 }
 ```
 
