@@ -30,7 +30,12 @@ pip3 install cython_bbox
 ```
 
 ## Data preparation
-Please follow the data preparation of [DanceTrack](https://github.com/DanceTrack/DanceTrack) and [ByteTrack](https://github.com/ifzhang/ByteTrack).
+Please follow the data preparation of [DanceTrack](https://github.com/DanceTrack/DanceTrack) and [ByteTrack](https://github.com/ifzhang/ByteTrack). For MOT17 and MOT20, we generate the validation folder:
+```shell
+cd <TCBTrack_HOME>/TCB
+python3 tools/generate_val.py
+```
+After that, generate each seqinfo.ini of the corresponding video. We provide them in [Baidu Drive](https://pan.baidu.com/s/1oOc9-GGXzYBVBcrLaFjFoQ) (code:xx6j).
 
 ## Tracking
 We provide the trained models in [Baidu Drive](https://pan.baidu.com/s/1oOc9-GGXzYBVBcrLaFjFoQ) (code:xx6j). After downloading the pretrained models, you can put them under <TCBTrack_HOME>/TCB/models.
