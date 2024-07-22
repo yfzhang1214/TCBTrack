@@ -35,7 +35,7 @@ Please follow the data preparation of [DanceTrack](https://github.com/DanceTrack
 cd <TCBTrack_HOME>/TCB
 python3 tools/generate_val.py
 ```
-After that, generate each seqinfo.ini of the corresponding video. We provide them in [Baidu Drive](https://pan.baidu.com/s/1oOc9-GGXzYBVBcrLaFjFoQ) (code:xx6j).
+After that, generate each seqinfo.ini of the corresponding video. We provide them in [Baidu Drive](https://pan.baidu.com/s/1S6g1G3vXJJAc3f5SMIukUQ) (code:jqs9).
 
 ## Tracking
 We provide the trained models in [Baidu Drive](https://pan.baidu.com/s/1oOc9-GGXzYBVBcrLaFjFoQ) (code:xx6j). After downloading the pretrained models, you can put them under <TCBTrack_HOME>/TCB/models.
@@ -48,7 +48,7 @@ cd <TCBTrack_HOME>/TCB
 python3 tools/track2.py -f exps/example/mot/dancetrack.py -c models/dancetrack.pth.tar -b 1 -d 1 --fp16 --fuse
 ```
 
-Evaluation:
+Put the tracking results in TCBTrack/val and do the evaluation:
 
 
 ```shell
@@ -64,7 +64,10 @@ Modify mot evaluator in TCB/yolox/\__init__.py and run:
 ```shell
 cd <TCBTrack_HOME>/TCB
 python3 tools/track2.py -f exps/example/mot/mot17.py -c models/mot17.pth.tar -b 1 -d 1 --fp16 --fuse
-cd ..
+```
+Put the tracking results in TCBTrack/val and do the evaluation:
+```shell
+cd <TCBTrack_HOME>
 python3 TrackEval/scripts/run_mot_challenge.py --SPLIT_TO_EVAL val  --METRICS HOTA CLEAR Identity  --GT_FOLDER TCB/datasets/mot/val --SEQMAP_FILE TCB/datasets/mot/val_seqmap.txt --SKIP_SPLIT_FOL True   --TRACKERS_TO_EVAL '' --TRACKER_SUB_FOLDER ''  --USE_PARALLEL True --NUM_PARALLEL_CORES 8 --PLOT_CURVES False --TRACKERS_FOLDER val/TRACKER_NAME 
 ```
 * **Evaluation on MOT20 validation set**
@@ -73,7 +76,10 @@ Modify mot evaluator in TCB/yolox/\__init__.py and run:
 ```shell
 cd <TCBTrack_HOME>/TCB
 python3 tools/track2.py -f exps/example/mot/mot20.py -c models/mot20.pth.tar -b 1 -d 1 --fp16 --fuse
-cd ..
+```
+Put the tracking results in TCBTrack/val and do the evaluation:
+```shell
+cd <TCBTrack_HOME>
 python3 TrackEval/scripts/run_mot_challenge.py --SPLIT_TO_EVAL val  --METRICS HOTA CLEAR Identity  --GT_FOLDER TCB/datasets/MOT20/val --SEQMAP_FILE TCB/datasets/MOT20/val_seqmap.txt --SKIP_SPLIT_FOL True   --TRACKERS_TO_EVAL '' --TRACKER_SUB_FOLDER ''  --USE_PARALLEL True --NUM_PARALLEL_CORES 8 --PLOT_CURVES False --TRACKERS_FOLDER val/TRACKER_NAME 
 ```
 
