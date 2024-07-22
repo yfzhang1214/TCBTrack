@@ -33,7 +33,7 @@ pip3 install cython_bbox
 Please follow the data preparation of [DanceTrack](https://github.com/DanceTrack/DanceTrack) and [ByteTrack](https://github.com/ifzhang/ByteTrack).
 
 ## Tracking
-We provide the trained models in [Baidu Drive](https://pan.baidu.com/s/1oOc9-GGXzYBVBcrLaFjFoQ) (code:xx6j). After downloading the pretrained models, you can put them under <TCBTrack_HOME>/TCB/pretrained.
+We provide the trained models in [Baidu Drive](https://pan.baidu.com/s/1oOc9-GGXzYBVBcrLaFjFoQ) (code:xx6j). After downloading the pretrained models, you can put them under <TCBTrack_HOME>/TCB/models.
 
 * **Evaluation on DanceTrack validation set**
 
