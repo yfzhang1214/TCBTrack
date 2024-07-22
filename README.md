@@ -10,7 +10,7 @@ Joint Detection and Embedding(JDE) trackers have demonstrated excellent performa
 
 ## Installation
 ### 1. Installing on the host machine
-Step1. Install ByteTrack.
+Step1. Install TCBTrack.
 ```shell
 git clone https://github.com/yfzhang1214/TCBTrack.git
 cd TCBTrack/TCB
