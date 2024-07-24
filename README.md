@@ -7,6 +7,16 @@ This repository contains the details of the Pytorch implementation of the Baseli
 
 Joint Detection and Embedding(JDE) trackers have demonstrated excellent performance in Multi-Object Tracking(MOT) tasks by incorporating the extraction of appearance features as auxiliary tasks through embedding Re-Identification task(ReID) into the detector, achieving a balance between inference speed and tracking performance. However, solving the competition between the detector and the feature extractor has always been a challenge. Also, the issue of directly embedding the ReID task into MOT has remained unresolved. The lack of high discriminability in appearance features results in their limited utility. In this paper, we propose a new learning approach using cross-correlation to capture temporal information of objects. The feature extraction network is no longer trained solely on appearance features from each frame but learns richer motion features by utilizing feature heatmaps from consecutive frames, addressing the challenge of inter-class feature similarity. Furthermore, we apply our learning approach to a more lightweight feature extraction network, and treat the feature matching scores as strong cues rather than auxiliary cues, employing a appropriate weight calculation to reflect the compatibility between our obtained features and the MOT task. Our tracker, named TCBTrack, achieves state-of-the-art performance on multiple public benchmarks, i.e., MOT17, MOT20, and DanceTrack datasets. Specifically, on the DanceTrack test set, we achieve 56.8 HOTA, 58.1 IDF1 and 92.5 MOTA, making it the best online tracker that can achieve real-time performance. Comparative evaluations with other trackers prove that our tracker achieves the best balance between speed, robustness and accuracy.
 
+## Experiment results
+
+| Dataset | MOTA | HOTA | IDF1  |  FPS  |  
+| :-----: | :--: | :--: | :--: | :--: | 
+|  MOT17  | 79.3 | 62.1 | 75.8  | 27.7  |
+|  MOT20  | 76.0 | 60.6 | 74.4 | 16.1  | 
+|  DanceTrack  | 92.5 | 56.8 | 58.1 | 28.3  |
+
+All of the results are obtained on the [MOT challenge](https://motchallenge.net/) evaluation server under the “private detector” protocol and [CodaLab](https://codalab.lisn.upsaclay.fr/competitions/5830).
+
 
 ## Installation
 ### 1. Installing on the host machine
