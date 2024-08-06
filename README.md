@@ -136,6 +136,13 @@ The results are in YOLOX_outputs/mot20. For all of the tracking results, you can
 ```shell
 python3 tools/interpolation.py
 ```
+## Visualization
+To generate images and videos, modify related paths in TCB/txttoimage.py and TCB/imagetovideo.py. After that, run:
+```shell
+cd <TCBTrack_HOME>/TCB
+python3 txttoimage.py
+python3 imagetovideo.py
+```
 
 ## Acknowledgement
 A large part of the code is borrowed from [ifzhang/ByteTrack](https://github.com/ifzhang/ByteTrack) and [DanceTrack/DanceTrack](https://github.com/DanceTrack/DanceTrack). Thanks for their wonderful works.
