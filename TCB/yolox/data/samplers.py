@@ -268,7 +268,7 @@ class TwoFrameSampler(Sampler):
         return iter(gen)
     def getlabel(self):
         import os
-        path = "/data3/yfzhang/datasets/bdd100k/images/track/train"
+        path = "your_dataset_path" #need to modify.
         seqs = os.listdir(path)
         video_id = 0
         out = []
